@@ -13,7 +13,7 @@ const baseUri = "ipfs://NewUriToReplace"; // This will be replaced automatically
 
 const layerConfigurations = [
   {
-    growEditionSizeTo: 20,    // upto 5,000 to use NFT Port API, make it 2 x 5000, and mint twice
+    growEditionSizeTo: 1000,    // upto 5,000 to use NFT Port API, make it 2 x 5000, and mint twice
     
     layersOrder: [
       { name: "01background" },
@@ -50,37 +50,46 @@ const extraMetadata = {
 // ** REQUIRED **
 const AUTH = process.env.NFTPORT_API_KEY; // Set this in the .env file to prevent exposing your API key when pushing to Github
 const LIMIT = 2; // Your API key rate limit
-const CHAIN = 'goerli'; // only goerli, polygon, or ethereum
+const CHAIN = 'goerli'; // only goerli, polygon, or ethereum // after deployed, can't change this. 
 
 // REQUIRED CONTRACT DETAILS THAT CANNOT BE UPDATED LATER!
-const CONTRACT_NAME = 'BelleKaiJH';
-const CONTRACT_SYMBOL = 'CP';
+const CONTRACT_NAME = 'BelleKaiJH Production 1';
+const CONTRACT_SYMBOL = 'BKJH';
 const METADATA_UPDATABLE = true; // set to false if you don't want to allow metadata updates after minting
-const OWNER_ADDRESS = '0xa50DdCf6Cef25a38130B38206c5BdD16f8409A2e';
-const TREASURY_ADDRESS = '0xa50DdCf6Cef25a38130B38206c5BdD16f8409A2e';
+const OWNER_ADDRESS = '0xF6a279a6AaAB89D47ef34291BCB386D0b2C84366';
+const TREASURY_ADDRESS = '0xa50DdCf6Cef25a38130B38206c5BdD16f8409A2e';//this is the address for withdrawing 
 const MAX_SUPPLY = 5000; // The maximum number of NFTs that can be minted. CANNOT BE UPDATED!
 const MINT_PRICE = 0.01; // Minting price per NFT. Goerli = ETH, Ethereum = ETH, Polygon = MATIC. CANNOT BE UPDATED!
-const TOKENS_PER_MINT = 10; // maximum number of NFTs a user can mint in a single transaction. CANNOT BE UPDATED!
+const TOKENS_PER_MINT = 5; // maximum number of NFTs a user can mint in a single transaction. CANNOT BE UPDATED!
 
 // REQUIRED CONTRACT DETAILS THAT CAN BE UPDATED LATER.
-const PUBLIC_MINT_START_DATE = "2022-03-20T11:30:48+00:00"; // This is required. Eg: 2022-02-08T11:30:48+00:00
+const PUBLIC_MINT_START_DATE = "2023-04-02T00:00:00+11:00"; // This is required. Eg: 2023-07-08T11:30:48+00:00  We Can update this later. 
 
 // OPTIONAL CONTRACT DETAILS THAT CAN BE UPDATED LATER.
-const PRESALE_MINT_START_DATE = null; // Optional. Eg: 2022-02-08T11:30:48+00:00
-const ROYALTY_SHARE = 500; // Percentage of the token price that goes to the royalty address. 100 bps = 1%
+const PRESALE_MINT_START_DATE = "2023-03-30T00:00:00+11:00"; // Optional. Eg: 2023-07-08T11:30:48+00:00
+const ROYALTY_SHARE = 500; // Percentage of the token price that goes to the royalty address. 300bps = 3%, 100 bps = 1%   
 const ROYALTY_ADDRESS = "0x1Cb505d7637335b8bf8137778e6fD4EB4B4C1037"; // Address that will receive the royalty
-const BASE_URI = null; // only update if you want to manually set the base uri
+const BASE_URI = null; // only update if you want to manually set the base uri/  This is for real NFT meta data location. 
+//To reveal NFT later, Just leave it null
+
 const PREREVEAL_TOKEN_URI = null; // only update if you want to manually set the prereveal token uri
-const PRESALE_WHITELISTED_ADDRESSES = []; // only update if you want to manually set the whitelisted addresses
+                                  // This is is for prereveal NFT (리빌전 보이는 이미지) 
+const PRESALE_WHITELISTED_ADDRESSES = ["0x241444773a9cd8D7c12F580759EA55c3C7bfC7f3",
+                                       "0xa50DdCf6Cef25a38130B38206c5BdD16f8409A2e",
+                                       "0xF6a279a6AaAB89D47ef34291BCB386D0b2C84366",
+                                       "0xebd8ad57274d9AE5389510BAC42cBeeFF4A46F0c"]; // only update if you want to manually set the whitelisted addresses
 
 // ** OPTIONAL **
 let CONTRACT_ADDRESS = "YOUR CONTRACT ADDRESS"; // If you want to manually include it
+                                               //If we already have a contract, we can reuse it
 
 // Generic Metadata is optional if you want to reveal your NFTs
 const GENERIC = true; // Set to true if you want to upload generic metas and reveal the real NFTs in the future
+                      //  We need to test first                    
+
 const GENERIC_TITLE = CONTRACT_NAME; // Replace with what you want the generic titles to say if you want it to be different from the contract name.
-const GENERIC_DESCRIPTION = "REPLACE THIS"; // Replace with what you want the generic descriptions to say.
-const GENERIC_IMAGE = "https://ipfs.io/ipfs/QmUf9tDbkqnfHkQaMdFWSGAeXwVXWA61pFED7ypx4hcsfh"; // Replace with your generic image that will display for all NFTs pre-reveal.
+const GENERIC_DESCRIPTION = "Which one you will get? "; // Replace with what you want the generic descriptions to say.
+const GENERIC_IMAGE = "https://ipfs.io/ipfs/bafkreic5so6lkcyvirm6rvwilwstdnzti2nz27xyyty4awd2mhvaulmj3e"; // Replace with your generic image that will display for all NFTs pre-reveal.
 
 // Automatically set contract address if deployed using the deployContract.js script
 try {
@@ -98,12 +107,18 @@ try {
 
 const solanaMetadata = {
   symbol: "YC",
-  seller_fee_basis_points: 1000, // Define how much % you want from secondary market sales 1000 = 10%
+  seller_fee_basis_points: 500, // Define how much % you want from secondary market sales 1000 = 10%
   external_url: "http://138.2.125.205",
   creators: [
     {
+      address: "0xF6a279a6AaAB89D47ef34291BCB386D0b2C84366",
+      share: 60,
+      address: "0xebd8ad57274d9AE5389510BAC42cBeeFF4A46F0c",
+      share: 20,
       address: "0xa50DdCf6Cef25a38130B38206c5BdD16f8409A2e",
-      share: 100,
+      share: 10,
+      address: "0x241444773a9cd8D7c12F580759EA55c3C7bfC7f3",
+      share: 10,
     },
   ],
 };
