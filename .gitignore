@@ -94,7 +94,8 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-
+/backend/.env.example
+/backend/.env
 .env
 .env.test
 
