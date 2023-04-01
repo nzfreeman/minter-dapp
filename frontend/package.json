@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codeSTACKr/nft-landing-page.git"
+    "url": "git+https://github.com/nzfreeman/nft-landing-page.git"
   },
   "keywords": [],
-  "author": "Jesse Hall (codeSTACKr)",
+  "author": "nzfreeman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codeSTACKr/nft-landing-page/issues"
+    "url": "https://github.com/nzfreeman/nft-landing-page/issues"
   },
-  "homepage": "https://github.com/codeSTACKr/nft-landing-page#readme",
+  "homepage": "https://github.com/nzfreeman/nft-landing-page#readme",
   "dependencies": {
     "node-fetch": "^2.6.7"
   }
