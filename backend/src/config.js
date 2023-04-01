@@ -56,7 +56,7 @@ const CHAIN = 'goerli'; // only goerli, polygon, or ethereum // after deployed, 
 const CONTRACT_NAME = 'BelleKaiJH Production 1';
 const CONTRACT_SYMBOL = 'BKJH';
 const METADATA_UPDATABLE = true; // set to false if you don't want to allow metadata updates after minting
-const OWNER_ADDRESS = '0xF6a279a6AaAB89D47ef34291BCB386D0b2C84366';
+const OWNER_ADDRESS = '0xa50DdCf6Cef25a38130B38206c5BdD16f8409A2e';
 const TREASURY_ADDRESS = '0xa50DdCf6Cef25a38130B38206c5BdD16f8409A2e';//this is the address for withdrawing 
 const MAX_SUPPLY = 5000; // The maximum number of NFTs that can be minted. CANNOT BE UPDATED!
 const MINT_PRICE = 0.01; // Minting price per NFT. Goerli = ETH, Ethereum = ETH, Polygon = MATIC. CANNOT BE UPDATED!
